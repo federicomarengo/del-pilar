@@ -1,14 +1,14 @@
 // Google Sheets Configuration
-// Replace these values with your actual Google Sheets setup
+// Environment variables are used for security
 
 export const GOOGLE_SHEETS_CONFIG = {
-  // Get this from Google Cloud Console
-  API_KEY: 'AIzaSyDt4D5cUMdCQG-LLAl7ZKanLt3MgQ3Alc8',
+  // Get this from Google Cloud Console - Set as environment variable
+  API_KEY: (globalThis as any)['NG_APP_GOOGLE_API_KEY'] || '',
   
-  // Get this from your Google Sheets URL
+  // Get this from your Google Sheets URL - Set as environment variable
   // Example: https://docs.google.com/spreadsheets/d/1ABC123.../edit
   // The SHEET_ID is: 1ABC123...
-  SHEET_ID: '1QqkNXEo7ap8FGlUx5YFLysr3LSF6nzLCpwZxTEF072I',
+  SHEET_ID: (globalThis as any)['NG_APP_GOOGLE_SHEET_ID'] || '',
   
   // Name of the sheet tab (worksheet) in your Google Sheets
   // If you haven't renamed the sheet tab, it's usually 'Sheet1' by default
