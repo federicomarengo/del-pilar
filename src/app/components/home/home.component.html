@@ -1,0 +1,68 @@
+<div class="home-container">
+  <!-- Navigation -->
+  <nav class="navigation">
+    <div class="nav-brand">
+      <div class="logo-container">
+        <div class="logo-image">
+          <img src="logo_fondo.png" alt="Panadería Del Pilar Logo" class="header-logo">
+        </div>
+      </div>
+    </div>
+    <div class="nav-links">
+    </div>
+  </nav>
+
+  <!-- Countdown Banner -->
+  <div class="countdown-banner">
+    <div class="countdown-content">
+      <span class="countdown-label">Tiempo restante para cumplir el objetivo:</span>
+      <div class="countdown-display">
+        <div class="countdown-item">
+          <span class="countdown-number">{{ countdownDays }}</span>
+          <span class="countdown-label-small">días</span>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-item">
+          <span class="countdown-number">{{ countdownHours }}</span>
+          <span class="countdown-label-small">horas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress Bar Section -->
+  <div class="progress-section">
+    <h2 class="progress-title">DEL PILAR - JEFATURA</h2>
+    <div class="connection-status">
+      <span *ngIf="isLoading" class="status-loading">🔄 Cargando...</span>
+      <span *ngIf="isConnected && !isLoading" class="status-connected">✅ Objetivo actualizado</span>
+      <span *ngIf="!isConnected && !isLoading" class="status-disconnected">❌ Solo almacenamiento local</span>
+    </div>
+    <div class="progress-container">
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar">
+          <div class="progress-fill" 
+               [style.width.%]="progressValue"
+               [class]="getProgressBarClass()">
+            <div class="progress-emoji">{{ getProgressEmoji() }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="progress-controls">
+        <button (click)="refreshObjective()" [disabled]="isLoading" class="refresh-btn">
+          {{ isLoading ? '🔄 Cargando...' : '🔄 Actualizar Objetivo' }}
+        </button>
+        <div *ngIf="getProgressText()" class="celebration-text">{{ getProgressText() }}</div>
+      </div>
+      
+      <!-- Message from Google Sheets -->
+      <div *ngIf="messageFromSheet" class="message-section">
+        <div class="message-content">
+          <h3 class="message-title">🥖 Del Pilar dice:</h3>
+          <p class="message-text">{{ messageFromSheet }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
